@@ -1,0 +1,61 @@
+[package]
+name = "dc34-scanner"
+edition = "2021"
+version = "0.1.0"
+
+[dependencies]
+xous = "0.9.66"
+xous-ipc = "0.10.6"
+xous-names = { package = "xous-api-names", version = "0.9.67" }
+log = "0.4.14"
+log-server = { package = "xous-api-log", version = "0.1.65" }
+ticktimer-server = { package = "xous-api-ticktimer", version = "0.9.65" }
+num-derive = { version = "0.4.2", default-features = false }
+num-traits = { version = "0.2.14", default-features = false }
+
+# --- hardware surface (board-baosec only) ---
+# All marked optional: host `cargo test` (default features = []) must not try
+# to compile these at all, since they only build for riscv32imac-unknown-xous-elf.
+ux-api = { git = "https://github.com/betrusted-io/xous-core", rev = "616bf65f6e379165464f50b1e79ec42aff77a683", optional = true }
+bao1x-api = { git = "https://github.com/betrusted-io/xous-core", rev = "616bf65f6e379165464f50b1e79ec42aff77a683", optional = true }
+bao1x-hal-service = { git = "https://github.com/betrusted-io/xous-core", rev = "616bf65f6e379165464f50b1e79ec42aff77a683", optional = true }
+blitstr2 = { git = "https://github.com/betrusted-io/xous-core", rev = "616bf65f6e379165464f50b1e79ec42aff77a683", features = [
+    "bao1x",
+], optional = true }
+usb-bao1x = { git = "https://github.com/betrusted-io/xous-core", rev = "616bf65f6e379165464f50b1e79ec42aff77a683", optional = true }
+
+# Vanilla getrandom doesn't support riscv32imac-unknown-xous-elf; pull in the
+# same betrusted-io fork (pinned to our rev) that dc34-vault and dabao-console
+# patch in for this target.
+getrandom = "=0.2.12"
+
+[build-dependencies]
+serde_json = "1"
+zip = "2"
+ureq = "2"
+
+[features]
+default = []
+board-baosec = [
+    "dep:ux-api",
+    "dep:bao1x-api",
+    "dep:bao1x-hal-service",
+    "dep:blitstr2",
+    "dep:usb-bao1x",
+    "bao1x-hal-service/board-baosec",
+    "ux-api/board-baosec",
+    "blitstr2/board-baosec",
+    "usb-bao1x/board-baosec",
+]
+
+[patch.crates-io.getrandom]
+git = "https://github.com/betrusted-io/xous-core"
+rev = "616bf65f6e379165464f50b1e79ec42aff77a683"
+
+[profile.release]
+codegen-units = 1
+debug = false
+strip = false
+lto = "fat"
+incremental = true
+opt-level = "s"

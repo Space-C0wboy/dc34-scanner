@@ -1,0 +1,14 @@
+# Reference clones (build against these; not part of this repo)
+xous-core/
+dc34-vault/
+dc34-console/
+dc34-api/
+
+# Build artifacts / downloaded images
+firmware/
+target/
+*.uf2
+
+# Local tooling / scratch
+.superpowers/
+.claude/
