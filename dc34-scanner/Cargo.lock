@@ -1992,9 +1992,9 @@ dependencies = [
 
 [[package]]
 name = "xous"
-version = "0.9.70"
+version = "0.9.71"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8076e0a642623e94fcfa795dc1e5409715a6f9f842b019c5afffc87efe8d76f8"
+checksum = "673f8f1b380ca7f3efe808b87cb48c4dac72aed03d235337d5593ddc0d00ff93"
 dependencies = [
  "lazy_static",
 ]
@@ -2062,9 +2062,9 @@ dependencies = [
 
 [[package]]
 name = "xous-ipc"
-version = "0.10.10"
+version = "0.10.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "77dea39ef1a9a4bbfce9a07ab0321915c4e8af31f01f09e7520d5f4ac8224130"
+checksum = "8bf372fe20c7298e22d2387cd779fdd894ceef66546d976ab73544f21082dedb"
 dependencies = [
  "bitflags",
  "rkyv",
