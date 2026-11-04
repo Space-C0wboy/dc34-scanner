@@ -1,0 +1,27 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-tests:
+    # host unit tests only; the firmware itself builds for riscv32imac-unknown-xous-elf (docs/BUILDING.md)
+    runs-on: ubuntu-latest
+    env:
+      SKIP_TOOLKIT_INSTALL: "1"   # build.rs would otherwise download the Xous sysroot
+    defaults:
+      run:
+        working-directory: dc34-scanner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: dc34-scanner
+      - run: cargo test
