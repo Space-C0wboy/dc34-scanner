@@ -311,7 +311,8 @@ fn extract_zip<R: Read + std::io::Seek, P: AsRef<std::path::Path>>(
 
     for i in 0..archive.len() {
         let mut entry = archive.by_index(i).map_err(|e| format!("unable to read zip entry {}: {}", i, e))?;
-        let out_path = extract_to.as_ref().join(entry.mangled_name());
+        let name = entry.mangled_name().map_err(|e| format!("bad name for zip entry {}: {}", i, e))?;
+        let out_path = extract_to.as_ref().join(name);
 
         if entry.is_dir() {
             std::fs::create_dir_all(&out_path).map_err(|e| format!("mkdir {}: {}", out_path.display(), e))?;
