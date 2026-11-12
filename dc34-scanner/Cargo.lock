@@ -58,7 +58,7 @@ dependencies = [
  "arbitrary-int",
  "bitbybit",
  "bytemuck",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "num_enum 0.5.11",
  "rkyv",
@@ -80,7 +80,7 @@ dependencies = [
  "bytemuck",
  "either",
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rand_chacha",
  "rkyv",
@@ -109,7 +109,7 @@ dependencies = [
  "flatipc",
  "flatipc-derive",
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rand",
  "rand_chacha",
@@ -217,7 +217,7 @@ version = "0.1.0"
 source = "git+https://github.com/betrusted-io/xous-core?rev=616bf65f6e379165464f50b1e79ec42aff77a683#616bf65f6e379165464f50b1e79ec42aff77a683"
 dependencies = [
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rkyv",
  "xous",
@@ -427,7 +427,7 @@ dependencies = [
  "blitstr2",
  "getrandom 0.2.12",
  "log",
- "num-derive",
+ "num-derive 0.5.1",
  "num-traits",
  "serde_json",
  "ureq",
@@ -1051,6 +1051,17 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.119",
+]
+
+[[package]]
+name = "num-derive"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e4e98dc3b890f6c23a0f9d3d491a2823d0dea0fa656302a13dd225fa924112a8"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.3",
 ]
 
 [[package]]
@@ -1752,7 +1763,7 @@ dependencies = [
  "frunk_core 0.4.4",
  "locales",
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "packed_struct",
  "rkyv",
@@ -1829,7 +1840,7 @@ dependencies = [
  "hex",
  "locales",
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "qrcode",
  "rkyv",
@@ -2040,7 +2051,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cc00f06eb68245d2f277a9f0a5d29ff9d7cc3d5b88a62d85e1f094a79aa7ee95"
 dependencies = [
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "xous",
  "xous-ipc",
@@ -2053,7 +2064,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "998a4eb5abd7defef5b4a5a701ff1009787cd9184c1a6e73100f99aa53390152"
 dependencies = [
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rkyv",
  "xous",
@@ -2067,7 +2078,7 @@ version = "0.9.68"
 source = "git+https://github.com/betrusted-io/xous-core?rev=616bf65f6e379165464f50b1e79ec42aff77a683#616bf65f6e379165464f50b1e79ec42aff77a683"
 dependencies = [
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rkyv",
  "utralib",
@@ -2084,7 +2095,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e9a00a93c3c38caf7f99e73828544027fa0483d0f6ee487b9a1a7b3ee885039d"
 dependencies = [
  "log",
- "num-derive",
+ "num-derive 0.4.2",
  "num-traits",
  "rkyv",
  "xous",
