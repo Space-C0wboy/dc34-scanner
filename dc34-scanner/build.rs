@@ -292,14 +292,15 @@ fn get_toolchain_url(target: &str, major: u64, minor: u64, patch: u64) -> Result
 /// Synchronous HTTP GET using `ureq`. Follows redirects automatically (GitHub
 /// release asset URLs redirect to S3) and returns the full response body.
 fn http_get(url: &str) -> Result<Vec<u8>, String> {
-    let mut body: Vec<u8> = Vec::new();
+    // ureq 3 caps read_to_vec at 10 MB by default; toolchain archives are far larger.
     ureq::get(url)
         .call()
         .map_err(|e| format!("http_get '{}': {}", url, e))?
-        .into_reader()
-        .read_to_end(&mut body)
-        .map_err(|e| format!("http_get read '{}': {}", url, e))?;
-    Ok(body)
+        .body_mut()
+        .with_config()
+        .limit(u64::MAX)
+        .read_to_vec()
+        .map_err(|e| format!("http_get read '{}': {}", url, e))
 }
 
 /// Extract a zip archive into `extract_to`, mirroring `extract_zip` in utils.rs.
